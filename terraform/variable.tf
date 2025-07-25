@@ -12,3 +12,8 @@ variable "key_name" {
 }
 variable "db_username" {}
 variable "db_password" {}
+
+variable "image_uri" {
+  description = "The full ECR image URI"
+  type        = string
+}

@@ -72,6 +72,8 @@ resource "aws_ecs_task_definition" "strapi_task" {
     {
       name  = "strapi"
       image = "${aws_ecr_repository.strapi_repo.repository_url}:latest"
+      image = var.image_uri
+
       essential = true
       portMappings = [
         {
@@ -159,4 +161,5 @@ output "alb_url" {
 data "aws_vpc" "default" {
   default = true
 }
+
 
