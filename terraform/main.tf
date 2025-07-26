@@ -26,7 +26,7 @@ resource "aws_security_group" "strapi_sg" {
 
 # Create ECS Cluster
 resource "aws_ecs_cluster" "strapi_cluster" {
-  name = "strapi-cluster"
+  name = "strapi-cluster-new"
 }
 
 # Create ECR Repository
@@ -48,6 +48,7 @@ resource "aws_db_instance" "strapi_db" {
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 }
 
+
 # IAM Role (Pre-existing, use ARN provided)
 
 data "aws_iam_role" "task_exec_role" {
@@ -60,7 +61,7 @@ data "aws_iam_role" "task_role" {
 
 # ECS Task Definition
 resource "aws_ecs_task_definition" "strapi_task" {
-  family                   = "strapi-task"
+  family                   = "strapi-task-new"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "512"
@@ -95,7 +96,7 @@ resource "aws_ecs_task_definition" "strapi_task" {
 
 # ECS Service
 resource "aws_ecs_service" "strapi_service" {
-  name            = "strapi-service"
+  name            = "strapi-service-new"
   cluster         = aws_ecs_cluster.strapi_cluster.id
   task_definition = aws_ecs_task_definition.strapi_task.arn
   desired_count   = 1
