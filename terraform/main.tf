@@ -6,7 +6,7 @@ provider "aws" {
 
 # Security Group for ALB and ECS Task
 resource "aws_security_group" "strapi_sg" {
-  name        = "strapi_sg_fizz"
+  name        = "strapi_sg_fizz2"
   description = "Allow HTTP inbound traffic"
 
   ingress {
@@ -31,7 +31,7 @@ resource "aws_ecs_cluster" "strapi_cluster" {
 
 # Create ECR Repository
 resource "aws_ecr_repository" "strapi_repo" {
-  name = "strapi-app2"
+  name = "strapi-app3"
 }
 
 # RDS PostgreSQL (Free Tier)
@@ -135,7 +135,7 @@ resource "aws_lb" "strapi_alb" {
 }
 
 resource "aws_lb_target_group" "strapi_tg" {
-  name     = "strapi-tg-fizz"
+  name     = "strapi-tg-fizz2"
   port     = 1337
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.default.id
